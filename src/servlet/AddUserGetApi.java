@@ -36,14 +36,24 @@ public class AddUserGetApi extends HttpServlet {
             name = tel;
         }*/
         name = tel;
+        String from = req.getHeader("REFERER");
+        if (from.contains("local")) {
+            from = "本地";
+        }
+        if (from.contains("topxlc5")) {
+            from = "百度";
+        }
+        if (from.contains("shltcm")) {
+            from = "UC";
+        }
         resp.setStatus(200);
         PrintWriter pw = resp.getWriter(); //输出响应信息到客户端
-        if (addUser(name, tel, sec, ip, time)) {
+        if (addUser(name, tel, sec, ip, time,from)) {
             new Thread(){
                 @Override
                 public void run() {
                     super.run();
-                    new SendWX().send(tel,sec);
+                    //new SendWX().send(tel,sec);
                 }
             }.start();
             pw.write("<html><body><p>添加成功</p></body></html>");
@@ -55,7 +65,7 @@ public class AddUserGetApi extends HttpServlet {
 
     }
 
-    private boolean addUser(String name, String tel, String sec, String ip, String time) {
+    private boolean addUser(String name, String tel, String sec, String ip, String time,String from) {
 
         User user = new User();
         user.userTel = tel;
@@ -63,6 +73,7 @@ public class AddUserGetApi extends HttpServlet {
         user.userSec = sec;
         user.userIp = ip;
         user.userTime = time;
+        user.userFrom = from;
         List<User> l = new ArrayList<>();
         l.add(user);
         int[] i = UserDaoImpl.getInstance().create(l);

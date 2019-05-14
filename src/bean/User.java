@@ -30,6 +30,8 @@ public class User implements Serializable {
 
     public String userTime;
 
+    public String userFrom;
+
     @Override
     public String toString() {
         return "User{" +
@@ -40,6 +42,7 @@ public class User implements Serializable {
                 ", userSec='" + userSec + '\'' +
                 ", userIp='" + userIp + '\'' +
                 ", userTime='" + userTime + '\'' +
+                ", userFrom='" + userFrom + '\'' +
                 '}';
     }
 }

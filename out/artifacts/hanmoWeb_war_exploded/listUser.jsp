@@ -18,6 +18,7 @@
         <th align="left" width="150">ip</th>
         <th align="left" width="100">0表示未审阅</th>
         <th align="left" width="150">时间</th>
+        <th align="left" width="80">来自</th>
         <th align="left" width="80">操作</th>
         <%--<td>edit</td>
         <td>delete</td>--%>
@@ -41,6 +42,8 @@
         <td><%=list.get(i).role%>
         </td>
         <td><%=list.get(i).userTime%>
+        </td>
+        <td><%=list.get(i).userFrom%>
         </td>
         <td><a name="delete" href="<%=request.getContextPath()%>/DeleteUserServlet?userName=<%=list.get(i).userName%>">删除</a>
             <a name="check" href="<%=request.getContextPath()%>/CheckUserApi?userName=<%=list.get(i).userName%>">审阅</a>

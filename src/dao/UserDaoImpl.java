@@ -37,6 +37,7 @@ public class UserDaoImpl implements IDao<User> {
                 "userSec varchar(30) null," +
                 "userIp varchar(50) null," +
                 "userTime varchar(30) null," +
+                "userFrom varchar(30) null," +
                 "role int(5) default '0' not null," +
                 "constraint userName unique (userName)" +
                 ") DEFAULT CHARSET=utf8mb4";//支持emoji表情
@@ -72,7 +73,7 @@ public class UserDaoImpl implements IDao<User> {
 
     @Override
     public int[] create(List<User> list) {
-        String sql = "insert into user(userName,userTel,userSec,userIp,userTime,role) values(?,?,?,?,?,?)";
+        String sql = "insert into user(userName,userTel,userSec,userIp,userTime,userFrom,role) values(?,?,?,?,?,?,?)";
         try {
             if (connection == null || connection.isClosed()) {
                 connection = JdbcUtil.getConnection();
@@ -84,7 +85,8 @@ public class UserDaoImpl implements IDao<User> {
                 preparedStatement.setString(3, user.userSec);
                 preparedStatement.setString(4, user.userIp);
                 preparedStatement.setString(5, user.userTime);
-                preparedStatement.setInt(6, user.role);
+                preparedStatement.setString(6, user.userFrom);
+                preparedStatement.setInt(7, user.role);
                 preparedStatement.addBatch();
             }
             return preparedStatement.executeBatch();
@@ -120,6 +122,7 @@ public class UserDaoImpl implements IDao<User> {
                 user.userSec = resultSet.getString("userSec");
                 user.userIp = resultSet.getString("userIp");
                 user.userTime = resultSet.getString("userTime");
+                user.userFrom = resultSet.getString("userFrom");
                 user.userId = resultSet.getInt("userId");
                 user.role = resultSet.getInt("role");
                 list.add(user);
@@ -135,7 +138,7 @@ public class UserDaoImpl implements IDao<User> {
 
     @Override
     public int[] update(List<User> list) {
-        String sql = "update user set userTel=?,userSec=?,userIp=?,userTime=?,role=? where userName=?";
+        String sql = "update user set userTel=?,userSec=?,userIp=?,userTime=?,userFrom=?,role=? where userName=?";
         try {
             if (connection == null || connection.isClosed()) {
                 connection = JdbcUtil.getConnection();
@@ -146,8 +149,9 @@ public class UserDaoImpl implements IDao<User> {
                 preparedStatement.setString(2, user.userSec);
                 preparedStatement.setString(3, user.userIp);
                 preparedStatement.setString(4, user.userTime);
-                preparedStatement.setInt(5, user.role);
-                preparedStatement.setString(6, user.userName);
+                preparedStatement.setString(5, user.userFrom);
+                preparedStatement.setInt(6, user.role);
+                preparedStatement.setString(7, user.userName);
                 preparedStatement.addBatch();
             }
             return preparedStatement.executeBatch();
@@ -226,6 +230,7 @@ public class UserDaoImpl implements IDao<User> {
                 user.userSec = resultSet.getString("userSec");
                 user.userIp = resultSet.getString("userIp");
                 user.userTime = resultSet.getString("userTime");
+                user.userFrom = resultSet.getString("userFrom");
                 user.userId = resultSet.getInt("userId");
                 user.role = resultSet.getInt("role");
                 userList.add(user);
