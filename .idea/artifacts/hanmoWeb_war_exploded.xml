@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="hanmoWeb:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/hanmoWeb_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="hanmoWeb/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="hanmoWeb" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="slf4j-nop-1.7.26" />
+          <element id="library" level="project" name="standard-1.1.2" />
+          <element id="library" level="project" name="poi-4.1.0" />
+          <element id="library" level="project" name="fastjson-1.2.28" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
