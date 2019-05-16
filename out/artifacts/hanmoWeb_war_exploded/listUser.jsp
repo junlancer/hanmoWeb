@@ -16,7 +16,7 @@
         <th align="left" width="150">手机号</th>
         <th align="left" width="150">搜索内容</th>
         <th align="left" width="150">ip</th>
-        <th align="left" width="100">0表示未审阅</th>
+        <th align="left" width="100">审阅状况</th>
         <th align="left" width="150">时间</th>
         <th align="left" width="80">来自</th>
         <th align="left" width="80">操作</th>
@@ -39,7 +39,7 @@
         </td>
         <td><%=list.get(i).userIp%>
         </td>
-        <td><%=list.get(i).role%>
+        <td style="background: <%= list.get(i).role == -1?"#9ac7a5":""%>"><%=list.get(i).role==-1?"已审阅":"未审阅"%>
         </td>
         <td><%=list.get(i).userTime%>
         </td>
@@ -51,7 +51,7 @@
     </tr>
     <%}%>
     <tr>
-        <td colspan="8" align="center">
+        <td colspan="9" align="center">
             <%--<a href="?flag=-1&start=${start}">[上一页]</a>
             <a href="?flag=1&start=${start}">[下一页]</a>--%>
             <a href="<%=request.getContextPath()%>/PagingReadingServlet?admin=admin&flag=0&start=0">[回到首页]</a>

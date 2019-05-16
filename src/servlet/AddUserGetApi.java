@@ -17,12 +17,9 @@ import java.util.List;
 
 public class AddUserGetApi extends HttpServlet {
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //super.doGet(req, resp);
-        //http://localhost:8080/hanmoWeb_war_exploded/AddUserGetApi?user=jun&tel=123
-
+        //super.doPost(req, resp);
         resp.setHeader("Access-Control-Allow-Origin", "*");//允许跨域
         req.setCharacterEncoding("utf-8");//写入数据库防止乱码
         resp.setContentType("text/html;charset=utf-8");
@@ -32,10 +29,10 @@ public class AddUserGetApi extends HttpServlet {
         String sec = req.getParameter("sec");
         String ip = getIpAddr(req);
         String time = df.format(new Date());
-        /*if (name.equals("") || name == null) {
+        if (name.equals("") || name == null) {
             name = tel;
-        }*/
-        name = tel;
+        }
+
         String from = req.getHeader("REFERER");
         if (from.contains("local")) {
             from = "本地";
@@ -53,7 +50,7 @@ public class AddUserGetApi extends HttpServlet {
                 @Override
                 public void run() {
                     super.run();
-                    //new SendWX().send(tel,sec);
+                    new SendWX().send(tel,sec);
                 }
             }.start();
             pw.write("<html><body><p>添加成功</p></body></html>");
@@ -62,10 +59,9 @@ public class AddUserGetApi extends HttpServlet {
             pw.write("<html><body><p>添加失败</p></body></html>");
             pw.close();
         }
-
     }
 
-    private boolean addUser(String name, String tel, String sec, String ip, String time,String from) {
+    private boolean addUser(String name, String tel, String sec, String ip, String time, String from) {
 
         User user = new User();
         user.userTel = tel;
