@@ -22,7 +22,7 @@ public class AddUserGetApi extends HttpServlet {
         //super.doPost(req, resp);
         resp.setHeader("Access-Control-Allow-Origin", "*");//允许跨域
         req.setCharacterEncoding("utf-8");//写入数据库防止乱码
-        resp.setContentType("text/html;charset=utf-8");
+        resp.setContentType("text/html;charset=utf-8");//响应编码
         //获取客户端get参数的值
         String name = req.getParameter("name");
         String tel = req.getParameter("tel");

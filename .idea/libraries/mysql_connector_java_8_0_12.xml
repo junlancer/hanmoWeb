@@ -2,7 +2,6 @@
   <library name="mysql-connector-java-8.0.12">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/libs/mysql-connector-java-8.0.12.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/servlet-api.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
