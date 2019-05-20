@@ -37,11 +37,14 @@ public class AddUserGetApi extends HttpServlet {
         if (from.contains("local")) {
             from = "本地";
         }
-        if (from.contains("topxlc5")) {
+        if (from.contains("topxlc10")) {
             from = "百度";
         }
         if (from.contains("shltcm")) {
             from = "UC";
+        }
+        if (from.contains("meiyitimes")) {
+            from = "搜狗";
         }
         resp.setStatus(200);
         PrintWriter pw = resp.getWriter(); //输出响应信息到客户端
